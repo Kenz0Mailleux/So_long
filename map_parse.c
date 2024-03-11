@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:43:00 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/10 01:55:51 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/03/11 02:00:26 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	*show_map(t_map_data *map, t_mlx_data main_window)
 		if (main_window.map->case_type == '1')
 		{
 			img = mlx_xpm_file_to_image(main_window.mlx_ptr, \
-			"img/TilesetNature.xpm", &img_width, &img_height);
+			"textures/TilesetNature.xpm", &img_width, &img_height);
 			mlx_put_image_to_window(main_window.mlx_ptr, \
 			main_window.mlx_window, img, main_window.map->x_pos * SIZE, \
 			main_window.map->y_pos * SIZE);
@@ -87,7 +87,7 @@ void	*show_map(t_map_data *map, t_mlx_data main_window)
 		else if (main_window.map->case_type == 'E')
 		{
 			img = mlx_xpm_file_to_image(main_window.mlx_ptr, \
-			"img/TileseExit.xpm", &img_width, &img_height);
+			"textures/TileseExit.xpm", &img_width, &img_height);
 			mlx_put_image_to_window(main_window.mlx_ptr, \
 			main_window.mlx_window, img, main_window.map->x_pos * SIZE, \
 			main_window.map->y_pos * SIZE);
@@ -95,7 +95,7 @@ void	*show_map(t_map_data *map, t_mlx_data main_window)
 		else if (main_window.map->case_type == 'C')
 		{
 			img = mlx_xpm_file_to_image(main_window.mlx_ptr, \
-			"img/Collectible.xpm", &img_width, &img_height);
+			"textures/Collectible.xpm", &img_width, &img_height);
 			mlx_put_image_to_window(main_window.mlx_ptr, \
 			main_window.mlx_window, img, main_window.map->x_pos * SIZE, \
 			main_window.map->y_pos * SIZE);
@@ -103,7 +103,7 @@ void	*show_map(t_map_data *map, t_mlx_data main_window)
 		else
 		{
 			img = mlx_xpm_file_to_image(main_window.mlx_ptr, \
-			"img/TilesetField.xpm", &img_width, &img_height);
+			"textures/TilesetField.xpm", &img_width, &img_height);
 			mlx_put_image_to_window(main_window.mlx_ptr, \
 			main_window.mlx_window, img, main_window.map->x_pos * SIZE, \
 			main_window.map->y_pos * SIZE);
@@ -122,7 +122,7 @@ void	show_player(t_mlx_data *main_window)
 	img_width = 50;
 	img_height = 50;
 	img = mlx_xpm_file_to_image(main_window->mlx_ptr, \
-	"img/Player.xpm", &img_width, &img_height);
+	"textures/Player.xpm", &img_width, &img_height);
 	mlx_put_image_to_window(main_window->mlx_ptr, main_window->mlx_window, \
 	img, main_window->player.x_pos * SIZE, main_window->player.y_pos * SIZE);
 }

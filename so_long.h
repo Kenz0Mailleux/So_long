@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:37:08 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/10 01:42:02 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/03/11 02:05:29 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "mlx/mlx.h"
 #include "mlx/mlx_int.h"
 #include "gnl/get_next_line.h"
+#include "libft/libft.h"
 #define WINDOW_WIDTH 400
 #define WINDOW_HEIGHT 1000
 #define MALLOC_ERROR 1
@@ -72,6 +73,7 @@ void		*show_map(t_map_data *map, t_mlx_data main_window);
 void		show_player(t_mlx_data *main_window);
 int			player_move(int input, t_mlx_data *main_window);
 int			handle_input(int input, t_mlx_data *main_window);
+int			mouse_use(int input, t_mlx_data *main_window);
 int			check_collision(t_mlx_data *main_window);
 int			init_window(t_mlx_data *main_window);
 void		init_player_pos(t_mlx_data *main_window);

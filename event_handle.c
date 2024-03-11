@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:19:12 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/10 01:58:55 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/03/11 01:32:29 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,6 @@ int	check_endable(t_mlx_data *main_window)
 
 int handle_input(int input, t_mlx_data *main_window)
 {
-	void	*img;
-	int		img_width;
-	int		img_height;
-
-	img_width = 50;
-	img_height = 50;
 	if (input == XK_Escape)
 		clean_close(main_window);
 	else
@@ -165,11 +159,18 @@ int handle_input(int input, t_mlx_data *main_window)
 	return (0);
 }
 
+int	mouse_use(int input, t_mlx_data *main_window)
+{
+	clean_close(main_window);
+	return (0);
+}
+
 void	clean_close(t_mlx_data *main_window)
 {
 	mlx_destroy_window(main_window->mlx_ptr, main_window->mlx_window);
 	mlx_destroy_display(main_window->mlx_ptr);
 	free(main_window->mlx_ptr);
+	//free liste chainée
 	exit (1);
 }
 
