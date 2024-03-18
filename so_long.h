@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:37:08 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/14 00:47:31 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/03/17 00:14:04 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_map_data
 	int					is_valid;
 	struct s_map_data	*next;
 	struct s_map_data	*previous;
+	int					is_visited;
 }						t_map_data;
 
 typedef struct s_player_data

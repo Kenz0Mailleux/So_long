@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 00:18:10 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/14 00:59:11 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/03/17 00:13:44 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ static int	process_line(t_map_data **head, char *line, int y_pos)
 	return (TRUE);
 }
 
+void	free_list(t_map_data *map)
+{
+	while (map != NULL)
+	{
+		free(map);
+		map = map->next;
+	}
+}
+
 t_map_data	*open_map(int fd)
 {
 	char		*line;
@@ -84,13 +93,4 @@ t_map_data	*open_map(int fd)
 		line = get_next_line(fd);
 	}
 	return (head);
-}
-
-void	free_list(t_map_data *map)
-{
-	while (map != NULL)
-	{
-		free(map);
-		map = map->next;
-	}
 }
