@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+         #
+#    By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 14:09:22 by kmailleu          #+#    #+#              #
-#    Updated: 2023/12/06 17:51:51 by kmailleu         ###   ########.fr        #
+#    Updated: 2024/04/03 14:59:10 by kenzo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ LIBC =	ft_isalpha.c \
 		ft_strtrim.c \
 		ft_striteri.c \
 		ft_split.c \
+		ft_strcmp.c \
+		
 
 BONUS =	ft_lstnew_bonus.c \
 		ft_lstadd_front_bonus.c \

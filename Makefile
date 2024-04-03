@@ -15,6 +15,7 @@ SRC			=	so_long.c \
 				check_map.c \
 				check_move.c \
 				create_map.c \
+				cleaning.c \
 				
 
 all:		$(MLX) $(LFT) obj $(NAME)

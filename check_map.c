@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:13:05 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/14 00:04:48 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/03 15:12:00 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,31 @@ int	check_map(t_mlx_data *main_window)
 	main_window->window_width = max_x;
 	if (!(check_rectangle(main_window->map, count, max_x)) \
 		|| !(check_wall_map(main_window->map, max_x, max_y)))
-		return (FALSE);
+		{
+			printf("The map is not rectangular.\n");
+			return (FALSE);
+		}
 	return (TRUE);
+}
+
+int	check_map_name(char *map_name)
+{
+	const char	*extension;
+	size_t		filename_len;
+	size_t		extension_len;
+
+	extension = ".ber";
+	filename_len = ft_strlen(map_name);
+	extension_len = ft_strlen(extension);
+	if (filename_len < extension_len)
+	{
+		printf("The map has not the good type of file.\n");
+		return (FALSE);
+	}
+	if (ft_strcmp(map_name + filename_len - extension_len, extension))
+	{
+		printf("The map has not the good type of file.\n");
+		return (FALSE);
+	}
+	return (ft_strcmp(map_name + filename_len - extension_len, extension) == 0);
 }

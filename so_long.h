@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:37:08 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/17 00:14:04 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/03 15:13:41 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,25 @@ enum
 
 int			game_loop(int input, t_mlx_data *main_window);
 t_map_data	*open_map(int fd);
+
 void		*show_map(t_map_data *map, t_mlx_data main_window);
 void		show_player(t_mlx_data *main_window);
 int			player_move(int input, t_mlx_data *main_window);
 int			handle_input(int input, t_mlx_data *main_window);
 int			mouse_use(int input, t_mlx_data *main_window);
-int			check_collision(t_mlx_data *main_window);
-int			init_window(t_mlx_data *main_window);
 void		put_assets(t_mlx_data main_window, const char *texture_name);
+
+int			init_window(t_mlx_data *main_window);
 void		init_player_pos(t_mlx_data *main_window);
 void		init_player(t_mlx_data *main_window);
-void		clean_close(t_mlx_data *main_window);
+
 int			check_rectangle(t_map_data *map, int count, int max_x);
 int			check_wall_map(t_map_data *map, int max_x, int max_y);
 int			check_map(t_mlx_data *main_window);
-void		free_list(t_map_data *head);
-int 		check_collision(t_mlx_data *main_window);
+int			check_collision(t_mlx_data *main_window);
 int			check_win(t_mlx_data *main_window);
 int			check_endable(t_mlx_data *main_window);
+int			check_map_name(char *map_name);
+
+void		clean_close(t_mlx_data *main_window);
+void		free_list(t_map_data *head);

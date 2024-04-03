@@ -6,22 +6,23 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 22:45:45 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/13 22:48:01 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/03/20 16:19:17 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_collision(t_mlx_data *main_window)
+int	check_collision(t_mlx_data *main_window)
 {
-	t_map_data *current;
+	t_map_data	*current;
 
 	current = main_window->map;
 	while (current != NULL)
 	{
-		if (current->x_pos == main_window->player.x_pos && current->y_pos == main_window->player.y_pos)
+		if (current->x_pos == main_window->player.x_pos && \
+			current->y_pos == main_window->player.y_pos)
 		{
-			if (current->case_type ==  WALL)
+			if (current->case_type == WALL)
 				return (1);
 			main_window->player.move += 1;
 			ft_putnbr_fd(main_window->player.move, 1);
@@ -33,14 +34,15 @@ int check_collision(t_mlx_data *main_window)
 	return (1);
 }
 
-int check_win(t_mlx_data *main_window)
+int	check_win(t_mlx_data *main_window)
 {
-	t_map_data *current;
+	t_map_data	*current;
 
 	current = main_window->map;
 	while (current != NULL)
 	{
-		if (current->x_pos == main_window->player.x_pos && current->y_pos == main_window->player.y_pos)
+		if (current->x_pos == main_window->player.x_pos \
+		&& current->y_pos == main_window->player.y_pos)
 		{
 			if (current->case_type == 'E' && main_window->endable == 1)
 				return (1);

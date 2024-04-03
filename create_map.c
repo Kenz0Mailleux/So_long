@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 00:18:10 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/17 00:13:44 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/03 15:10:37 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static t_map_data	*create_map_node(char c)
 	if (!ft_strchr(VALID_VALUE, c))
 	{
 		free(new_node);
+		printf("Wrong character has been used.\n");
 		return (NULL);
 	}
 	new_node->case_type = c;
@@ -61,15 +62,6 @@ static int	process_line(t_map_data **head, char *line, int y_pos)
 		x_pos++;
 	}
 	return (TRUE);
-}
-
-void	free_list(t_map_data *map)
-{
-	while (map != NULL)
-	{
-		free(map);
-		map = map->next;
-	}
 }
 
 t_map_data	*open_map(int fd)
