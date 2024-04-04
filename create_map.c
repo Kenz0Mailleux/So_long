@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 00:18:10 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/03 15:10:37 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/04 17:01:38 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,29 @@ t_map_data	*open_map(int fd)
 		line = get_next_line(fd);
 	}
 	return (head);
+}
+
+void	*create_str_map(t_mlx_data *main_window)
+{
+	char		*str_map;
+	int			i;
+	t_map_data	*current;
+
+	i = 0;
+	current = main_window->map;
+	while (current->next != NULL)
+		current = current->next;
+	main_window->max_x = current->x_pos;
+	main_window->max_y = current->y_pos;
+	str_map = malloc((sizeof(char) * (current->x_pos + 1) \
+	* (current->y_pos + 1)) + 1);
+	current = main_window->map;
+	while (current != NULL)
+	{
+		str_map[i] = current->case_type;
+		i++;
+		current = current->next;
+	}
+	str_map[i] = '\0';
+	main_window->str_map = str_map;
 }

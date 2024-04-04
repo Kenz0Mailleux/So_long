@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:32:56 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/03 15:12:07 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/04 17:01:05 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int	main(int argc, char *argv[])
 		return (FALSE);
 	fd = open(map, O_RDONLY);
 	main_window.map = open_map(fd);
+	create_str_map(&main_window);
 	if (main_window.map == NULL || check_map(&main_window) == 0)
-	{
-		free_list(main_window.map);
-		return (FALSE);
-	}
-	init_window(&main_window);
+		return (free_list(main_window.map), FALSE);
 	init_player(&main_window);
+	if (!(check_way_possible(main_window.str_map, main_window.player.x_pos, \
+	main_window.player.y_pos, main_window.max_x, main_window.max_y)))
+		return (printf("The map is not finishable"), 0);
+	init_window(&main_window);
+	free(main_window.str_map);
 	show_map(main_window.map, main_window);
 	show_player(&main_window);
 	if (argc == 2)

@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:13:05 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/03 15:12:00 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/04 17:00:15 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ int	check_map(t_mlx_data *main_window)
 	main_window->window_width = max_x;
 	if (!(check_rectangle(main_window->map, count, max_x)) \
 		|| !(check_wall_map(main_window->map, max_x, max_y)))
-		{
-			printf("The map is not rectangular.\n");
-			return (FALSE);
-		}
+		return (printf("The map is not rectangular.\n"), FALSE);
 	return (TRUE);
 }
 

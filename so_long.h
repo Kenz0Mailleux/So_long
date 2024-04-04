@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:37:08 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/03 15:13:41 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/04 16:21:59 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ typedef struct s_mlx_data
 	int				endable;
 	int				window_height;
 	int				window_width;
+	int				max_y;
+	int				max_x;
+	char			*str_map;
 	t_map_data		*map;
 	t_player_data	player;
 }						t_mlx_data;
@@ -87,6 +90,7 @@ void		put_assets(t_mlx_data main_window, const char *texture_name);
 int			init_window(t_mlx_data *main_window);
 void		init_player_pos(t_mlx_data *main_window);
 void		init_player(t_mlx_data *main_window);
+void		*create_str_map(t_mlx_data *main_window);
 
 int			check_rectangle(t_map_data *map, int count, int max_x);
 int			check_wall_map(t_map_data *map, int max_x, int max_y);
@@ -95,6 +99,7 @@ int			check_collision(t_mlx_data *main_window);
 int			check_win(t_mlx_data *main_window);
 int			check_endable(t_mlx_data *main_window);
 int			check_map_name(char *map_name);
+int	check_way_possible(char *str_map, int pos_x, int pos_y, int max_x, int max_y);
 
 void		clean_close(t_mlx_data *main_window);
 void		free_list(t_map_data *head);
