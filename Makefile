@@ -1,6 +1,6 @@
 NAME		=	so_long
 CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
 MLX			=	mlx/Makefile.gen
 LFT			=	libft/libft.a
 INC			=	-I ./inc -I ./libft -I ./mlx

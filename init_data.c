@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:17:46 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/14 00:06:39 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/22 17:15:24 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	init_window(t_mlx_data *main_window)
 		free(main_window->mlx_ptr);
 		return (MLX_ERROR);
 	}
+	init_img(main_window);
 	main_window->endable = 0;
 	return (FALSE);
 }
@@ -49,4 +50,23 @@ void	init_player(t_mlx_data *main_window)
 {
 	init_player_pos(main_window);
 	main_window->player.move = 0;
+}
+
+void	init_img(t_mlx_data *main_window)
+{
+	int		img_width;
+	int		img_height;
+
+	img_width = 50;
+	img_height = 50;
+	main_window->player_img = mlx_xpm_file_to_image(main_window->mlx_ptr, \
+	"textures/Player.xpm", &img_width, &img_height);
+	main_window->sol_img = mlx_xpm_file_to_image(main_window->mlx_ptr, \
+	"textures/TilesetField.xpm", &img_width, &img_height);
+	main_window->wall_img = mlx_xpm_file_to_image(main_window->mlx_ptr, \
+	"textures/TilesetNature.xpm", &img_width, &img_height);
+	main_window->collectible_img = mlx_xpm_file_to_image(main_window->mlx_ptr, \
+	"textures/Collectible.xpm", &img_width, &img_height);
+	main_window->exit_img = mlx_xpm_file_to_image(main_window->mlx_ptr, \
+	"textures/TilesetExit.xpm", &img_width, &img_height);
 }

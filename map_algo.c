@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:38:34 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/04 17:05:08 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/04 17:10:53 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	check_finishable(char *str_map)
 	int	i;
 
 	i = 0;
-	printf("%s\n", str_map);
 	while (str_map[i] != 0)
 	{
 		if (str_map[i] == 'C')

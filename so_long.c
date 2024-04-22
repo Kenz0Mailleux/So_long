@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:32:56 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/04 17:01:05 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/22 14:35:15 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int	main(int argc, char *argv[])
 		mlx_hook(main_window.mlx_window, 17, 0, (void *)exit, 0);
 		mlx_loop(main_window.mlx_ptr);
 	}
+	clean_close(&main_window);
 	return (FALSE);
 }
