@@ -6,7 +6,7 @@
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:17:46 by kenzo             #+#    #+#             */
-/*   Updated: 2024/06/13 14:48:02 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:41:45 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	init_window(t_mlx_data *main_window)
 		free(main_window->mlx_ptr);
 		return (MLX_ERROR);
 	}
-	init_img(main_window);
+	if (!init_img(main_window))
+		return (-1);
 	main_window->endable = 0;
 	return (FALSE);
 }
@@ -51,7 +52,7 @@ void	init_player(t_mlx_data *main_window)
 	main_window->player.move = 0;
 }
 
-void	init_img(t_mlx_data *main_window)
+int	init_img(t_mlx_data *main_window)
 {
 	int		img_width;
 	int		img_height;
@@ -68,4 +69,9 @@ void	init_img(t_mlx_data *main_window)
 	"textures/Collectible.xpm", &img_width, &img_height);
 	main_window->exit_img = mlx_xpm_file_to_image(main_window->mlx_ptr, \
 	"textures/TilesetExit.xpm", &img_width, &img_height);
+	if (!main_window->player_img || !main_window->sol_img || \
+		!main_window->wall_img || !main_window->collectible_img || \
+		!main_window->exit_img)
+		return (FALSE);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:32:56 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/25 15:42:01 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:40:48 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	main(int argc, char *argv[])
 	char		*map;
 
 	map = argv[1];
-	if (argc != 2 || !check_map_name(map))
-		return (FALSE);
 	fd = open(map, O_RDONLY);
+	if (fd == -1 || argc != 2 || !check_map_name(map))
+		return (perror("cd"), EXIT_FAILURE);
 	main_window.map = open_map(fd);
-	if (main_window.map == NULL || !check_map(&main_window))
-		return (FALSE);
-	create_str_map(&main_window);
+	if (main_window.map == NULL || !check_map(&main_window) || \
+		!create_str_map(&main_window))
+		return (EXIT_FAILURE);
 	init_player(&main_window);
 	pos.max_x = main_window.max_x;
 	pos.max_y = main_window.max_y;
@@ -51,9 +51,9 @@ int	main(int argc, char *argv[])
 		return (ft_printf("Map is too big"), FALSE);
 	if (!(check_way_possible(main_window.str_map, main_window.player.x_pos, \
 	main_window.player.y_pos, pos)))
-		return (printf("The map is not finishable"), 0);
-	init_window(&main_window);
-	free(main_window.str_map);
+		return (ft_printf("The map is not finishable"), 0);
+	if (init_window(&main_window) == -1)
+		return (free(main_window.str_map), clean_close(&main_window), 1);
 	launch_loop(main_window);
-	return (clean_close(&main_window), FALSE);
+	return (free(main_window.str_map), clean_close(&main_window), EXIT_SUCCESS);
 }

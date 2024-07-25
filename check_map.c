@@ -6,7 +6,7 @@
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:13:05 by kenzo             #+#    #+#             */
-/*   Updated: 2024/06/13 18:15:52 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:11:14 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_rectangle(t_map_data *map, int count, int max_x)
 			current = current->next;
 		}
 		if (count != max_x)
-			return (printf("The map is not rectangular.\n"), FALSE);
+			return (ft_printf("The map is not rectangular.\n"), FALSE);
 		count = 1;
 		current = current->next;
 	}
@@ -40,19 +40,19 @@ int	check_wall_map(t_map_data *map, int max_x, int max_y)
 	while (current != NULL)
 	{
 		if (current->x_pos == 0 && current->case_type != WALL)
-			return (printf("The map is not closed with wall.\n"), FALSE);
+			return (ft_printf("The map is not closed with wall.\n"), FALSE);
 		if (current->y_pos == 0 && current->case_type != WALL)
-			return (printf("The map is not closed with wall.\n"), FALSE);
+			return (ft_printf("The map is not closed with wall.\n"), FALSE);
 		if (current->x_pos == max_x - 1 && current->case_type != WALL)
-			return (printf("The map is not closed with wall.\n"), FALSE);
+			return (ft_printf("The map is not closed with wall.\n"), FALSE);
 		if (current->y_pos == max_y - 1 && current->case_type != WALL)
-			return (printf("The map is not closed with wall.\n"), FALSE);
+			return (ft_printf("The map is not closed with wall.\n"), FALSE);
 		current = current->next;
 	}
 	return (TRUE);
 }
 
-int	check_double(t_map_data *map)
+int	check_double(t_map_data *map, int count_c)
 {
 	t_map_data	*current;
 	int			count_e;
@@ -67,12 +67,16 @@ int	check_double(t_map_data *map)
 			count_e++;
 		if (current->case_type == 'P')
 			count_p++;
+		if (current->case_type == 'C')
+			count_c++;
 		if (count_e >= 2)
-			return (printf("The map has more than 1 End.\n"), FALSE);
+			return (ft_printf("The map has more than 1 End.\n"), FALSE);
 		if (count_p >= 2)
-			return (printf("The map has more than 1 Player.\n"), FALSE);
+			return (ft_printf("The map has more than 1 Player.\n"), FALSE);
 		current = current->next;
 	}
+	if (count_c == 0)
+		return (ft_printf("The map has no coin.\n"), FALSE);
 	return (TRUE);
 }
 
@@ -99,7 +103,7 @@ int	check_map(t_mlx_data *main_window)
 	main_window->window_width = max_x;
 	if (!check_rectangle(main_window->map, count, max_x) || \
 		!check_wall_map(main_window->map, max_x, max_y) || \
-		!check_double(main_window->map))
+		!check_double(main_window->map, 0))
 		return (FALSE);
 	return (TRUE);
 }
@@ -115,12 +119,12 @@ int	check_map_name(char *map_name)
 	extension_len = ft_strlen(extension);
 	if (filename_len < extension_len)
 	{
-		printf("The map has not the good type of file.\n");
+		ft_printf("The map has not the good type of file.\n");
 		return (FALSE);
 	}
 	if (ft_strcmp(map_name + filename_len - extension_len, extension))
 	{
-		printf("The map has not the good type of file.\n");
+		ft_printf("The map has not the good type of file.\n");
 		return (FALSE);
 	}
 	return (ft_strcmp(map_name + filename_len - extension_len, extension) == 0);
