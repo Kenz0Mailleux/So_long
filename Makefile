@@ -1,55 +1,77 @@
-NAME		=	so_long
-CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
-MLX			=	mlx/Makefile.gen
-LFT			=	libft/libft.a
-INC			=	-I ./inc -I ./libft -I ./mlx
-LIB			=	-L ./libft -lft -L ./mlx -lmlx -lXext -lX11 -lm
-OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
-SRC			=	so_long.c \
-				gnl/get_next_line.c \
-				gnl/get_next_line_utils.c \
-				map_parse.c \
-				event_handle.c \
-				init_data.c \
-				check_map.c \
-				check_move.c \
-				create_map.c \
-				cleaning.c \
-				map_algo.c \
-				
+NAME = so_long
 
-all:		$(MLX) $(LFT) obj $(NAME)
+CC = gcc
 
-$(NAME):	$(OBJ)
-			$(CC) $(FLAGS) -o $@ $^ $(LIB)
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
-$(MLX):
-			@echo " [ .. ] | Compiling minilibx.."
-			@make -s -C mlx
-			@echo " [ OK ] | Minilibx ready!"
+MLX_PATH = mlx/
 
-$(LFT):		
-			@echo " [ .. ] | Compiling libft.."
-			@make -s -C libft
-			@echo " [ OK ] | Libft ready!"
+MLX_LIB = $(MLX_PATH)libmlx.a
 
-obj:
-			@mkdir -p obj
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-obj/%.o:	src/%.c
-			$(CC) $(FLAGS) $(INC) -o $@ -c $<
+LIBFT_PATH = libft/
+
+LIBFT_LIB = $(LIBFT_PATH)libft.a
+
+Y = "\033[33m"
+R = "\033[31m"
+G = "\033[32m"
+B = "\033[34m"
+X = "\033[0m"
+UP = "\033[A"
+CUT = "\033[K"
+
+CFILES = so_long.c \
+		gnl/get_next_line.c \
+		gnl/get_next_line_utils.c \
+		map_parse.c \
+		event_handle.c \
+		init_data.c \
+		check_map.c \
+		check_move.c \
+		create_map.c \
+		cleaning.c \
+		map_algo.c \
+
+OBJECTS = $(CFILES:.c=.o)
+
+all: subsystems $(NAME)
+
+%.o : %.c
+	@echo $(Y)Compiling [$<]...$(X)
+	@$(CC) $(CFLAGS) -Imlx -c -o $@ $<
+	@printf $(UP)$(CUT)
+
+subsystems:
+	@echo $(B)
+	make -C $(MLX_PATH) all
+	@echo $(B)
+	make -C $(LIBFT_PATH) all
+
+$(NAME): $(OBJECTS)
+	@echo $(Y)Compiling [$(CFILES)]...$(X)
+	@echo $(G)Finished [$(CFILES)]$(X)
+	@echo
+	@echo $(Y)Compiling [$(NAME)]...$(X)
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJECTS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
+	@echo $(G)Finished [$(NAME)]$(X)
 
 clean:
-			@make -s $@ -C libft
-			@rm -rf $(OBJ) obj
-			@echo "object files removed."
+	@make -C $(MLX_PATH) clean
+	@make -C $(LIBFT_PATH) clean
+	@rm -f $(OBJECTS)
+	@echo $(R)Removed [$(OBJECTS)]$(X)
 
-fclean:		clean
-			@make -s $@ -C libft
-			@rm -rf $(NAME)
-			@echo "binary file removed."
+fclean: clean
+	@make -C $(MLX_PATH) fclean
+	@make -C $(LIBFT_PATH) fclean
+	@rm -f $(NAME)
+	@echo $(R)Removed [$(NAME)]$(X)
 
-re:			fclean all
+re: fclean all
 
-.PHONY:		all clean fclean re
+norm:
+	norminette libft init.c key_hook.c map.c move.c parse_input.c put_imgs.c so_long.c so_long.h win.c
+
+.PHONY: all clean fclean re norm

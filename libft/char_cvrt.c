@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaning.c                                         :+:      :+:    :+:   */
+/*   char_cvrt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 15:10:03 by kenzo             #+#    #+#             */
-/*   Updated: 2024/06/13 14:55:04 by kmailleu         ###   ########.fr       */
+/*   Created: 2024/02/06 16:09:36 by kmailleu          #+#    #+#             */
+/*   Updated: 2024/02/26 16:34:03 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-void	free_list(t_map_data *map)
+int	from_char(int c)
 {
-	while (map != NULL)
-	{
-		free(map);
-		map = map->next;
-	}
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
 }
 
-void	clean_close(t_mlx_data *main_window)
+int	from_str(char *str)
 {
-	mlx_destroy_window(main_window->mlx_ptr, main_window->mlx_window);
-	free(main_window->mlx_ptr);
-	exit (TRUE);
+	if (str == NULL)
+		return (ft_putstr(("(null)")));
+	return (ft_putstr(str));
 }

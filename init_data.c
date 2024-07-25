@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:17:46 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/22 17:15:24 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/06/13 14:48:02 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	init_window(t_mlx_data *main_window)
 	main_window->window_width * 50, main_window->window_height * 50, "Jeu");
 	if (main_window->mlx_window == NULL)
 	{
-		mlx_destroy_display(main_window->mlx_ptr);
 		free(main_window->mlx_ptr);
 		return (MLX_ERROR);
 	}

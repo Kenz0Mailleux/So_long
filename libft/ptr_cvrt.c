@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaning.c                                         :+:      :+:    :+:   */
+/*   ptr_cvrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 15:10:03 by kenzo             #+#    #+#             */
-/*   Updated: 2024/06/13 14:55:04 by kmailleu         ###   ########.fr       */
+/*   Created: 2024/02/15 18:08:48 by kmailleu          #+#    #+#             */
+/*   Updated: 2024/02/26 16:42:52 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-void	free_list(t_map_data *map)
+int	from_ptr(unsigned long long nbr)
 {
-	while (map != NULL)
+	int		len;
+	char	*nbr_str;
+
+	len = 0;
+	if (write(1, "0x", 2) == -1)
+		return (-1);
+	len += 2;
+	nbr_str = to_hexa(nbr, "0123456789abcdef");
+	if (nbr_str == NULL)
+		return (-1);
+	if (nbr == 0)
 	{
-		free(map);
-		map = map->next;
+		ft_putchar('0');
+		len += 1;
 	}
-}
-
-void	clean_close(t_mlx_data *main_window)
-{
-	mlx_destroy_window(main_window->mlx_ptr, main_window->mlx_window);
-	free(main_window->mlx_ptr);
-	exit (TRUE);
+	else
+		len += ft_putstr(nbr_str);
+	free(nbr_str);
+	return (len);
 }

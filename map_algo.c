@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_algo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:38:34 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/04 17:10:53 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/06/13 16:51:16 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,24 @@ int	check_end_found(char *str_map)
 	return (0);
 }
 
-int	check_way_possible(char *str_map, int pos_x, int pos_y, int max_x, int max_y)
+int	check_way_possible(char *str_map, int pos_x, int pos_y, t_pos pos)
 {
-	if (pos_x > max_x || pos_y > max_y || \
-	str_map[pos_x + (pos_y * (max_x + 1))] == '1' || pos_x < 0 || pos_y < 0)
+	if (pos_x > pos.max_x || pos_y > pos.max_y || \
+	str_map[pos_x + (pos_y * (pos.max_x + 1))] == '1' || pos_x < 0 || pos_y < 0)
 		return (0);
-	if (str_map[pos_x + (pos_y * (max_x + 1))] == 'E')
-		str_map[pos_x + (pos_y * (max_x + 1))] = 'W';
-	if (str_map[pos_x + (pos_y * (max_x + 1))] == '1' || \
-	str_map[pos_x + (pos_y * (max_x + 1))] == 'X')
+	if (str_map[pos_x + (pos_y * (pos.max_x + 1))] == 'E')
+		str_map[pos_x + (pos_y * (pos.max_x + 1))] = 'W';
+	if (str_map[pos_x + (pos_y * (pos.max_x + 1))] == '1' || \
+	str_map[pos_x + (pos_y * (pos.max_x + 1))] == 'X')
 		return (0);
-	if (!(str_map[pos_x + (pos_y * (max_x + 1))] == 'W'))
-		str_map[pos_x + (pos_y * (max_x + 1))] = 'X';
+	if (!(str_map[pos_x + (pos_y * (pos.max_x + 1))] == 'W'))
+		str_map[pos_x + (pos_y * (pos.max_x + 1))] = 'X';
 	if (check_end_found(str_map) && check_finishable(str_map))
 		return (1);
-	if (check_way_possible(str_map, pos_x + 1, pos_y, max_x, max_y) || \
-	check_way_possible(str_map, pos_x - 1, pos_y, max_x, max_y) || \
-	check_way_possible(str_map, pos_x, pos_y + 1, max_x, max_y) || \
-	(check_way_possible(str_map, pos_x, pos_y - 1, max_x, max_y)))
+	if (check_way_possible(str_map, pos_x + 1, pos_y, pos) || \
+	check_way_possible(str_map, pos_x - 1, pos_y, pos) || \
+	check_way_possible(str_map, pos_x, pos_y + 1, pos) || \
+	(check_way_possible(str_map, pos_x, pos_y - 1, pos)))
 		return (1);
 	return (0);
 }

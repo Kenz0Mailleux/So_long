@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:19:12 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/03 15:11:20 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/06/13 14:47:54 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int	player_move(int input, t_mlx_data *main_window)
 {
-	if (input == ON_KEYUP || input == 'z')
+	if (input == 13)
 	{
 		main_window->player.y_pos -= 1;
 		if (check_collision(main_window))
 			main_window->player.y_pos += 1;
 	}
-	else if (input == ON_KEYDOWN || input == 's')
+	else if (input == 1)
 	{
 		main_window->player.y_pos += 1;
 		if (check_collision(main_window))
 			main_window->player.y_pos -= 1;
 	}
-	else if (input == 'd')
+	else if (input == 2)
 	{
 		main_window->player.x_pos += 1;
 		if (check_collision(main_window))
 			main_window->player.x_pos -= 1;
 	}
-	else if (input == 'q')
+	else if (input == 0)
 	{
 		main_window->player.x_pos -= 1;
 		if (check_collision(main_window))
@@ -64,7 +64,7 @@ int	take_collectible(t_mlx_data *main_window)
 
 int	handle_input(int input, t_mlx_data *main_window)
 {
-	if (input == XK_Escape)
+	if (input == 53)
 		clean_close(main_window);
 	else
 	{
@@ -78,10 +78,8 @@ int	handle_input(int input, t_mlx_data *main_window)
 	return (FALSE);
 }
 
-int	mouse_use(int input, t_mlx_data *main_window)
+int	mouse_use(t_mlx_data *main_window)
 {
 	clean_close(main_window);
 	return (0);
 }
-
-//void victory_screen(t_mlx_data *main_window)

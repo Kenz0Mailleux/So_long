@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 00:18:10 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/04 17:01:38 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/06/13 17:56:23 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_map_data	*open_map(int fd)
 	return (head);
 }
 
-void	*create_str_map(t_mlx_data *main_window)
+void	create_str_map(t_mlx_data *main_window)
 {
 	char		*str_map;
 	int			i;
