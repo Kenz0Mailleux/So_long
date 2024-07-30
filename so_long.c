@@ -6,7 +6,7 @@
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:32:56 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/25 16:40:48 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:55:53 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	launch_loop(t_mlx_data main_window)
 	show_map(main_window);
 	show_player(&main_window);
 	mlx_key_hook(main_window.mlx_window, game_loop, &main_window);
-	mlx_hook(main_window.mlx_window, 17, 0, (void *)exit, 0);
+	mlx_hook(main_window.mlx_window, 17, 0, &mouse_use, &main_window);
 	mlx_loop(main_window.mlx_ptr);
 }
 
@@ -48,7 +48,7 @@ int	main(int argc, char *argv[])
 	pos.max_x = main_window.max_x;
 	pos.max_y = main_window.max_y;
 	if (main_window.max_x > 50 || main_window.max_y > 24)
-		return (ft_printf("Map is too big"), FALSE);
+		return (ft_printf("Map is too big"), EXIT_FAILURE);
 	if (!(check_way_possible(main_window.str_map, main_window.player.x_pos, \
 	main_window.player.y_pos, pos)))
 		return (ft_printf("The map is not finishable"), 0);

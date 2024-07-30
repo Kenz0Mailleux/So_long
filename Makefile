@@ -2,7 +2,7 @@ NAME = so_long
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
 
 MLX_PATH = mlx/
 
@@ -64,7 +64,7 @@ clean:
 	@echo $(R)Removed [$(OBJECTS)]$(X)
 
 fclean: clean
-	@make -C $(MLX_PATH) fclean
+	@make -C $(MLX_PATH) clean
 	@make -C $(LIBFT_PATH) fclean
 	@rm -f $(NAME)
 	@echo $(R)Removed [$(NAME)]$(X)

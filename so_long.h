@@ -6,32 +6,35 @@
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:37:08 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/25 15:46:23 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:59:48 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <fcntl.h>
-#include "mlx/mlx.h"
-#include "gnl/get_next_line.h"
-#include "libft/libft.h"
-#include "libft/ft_printf.h"
-#define WINDOW_WIDTH 1000
-#define WINDOW_HEIGHT 400
-#define TRUE 1
-#define FALSE 0
-#define MALLOC_ERROR 1
-#define MLX_ERROR 1
-#define COLLECTOR C
-#define WALL '1'
-#define PLAYER P
-#define EXIT E
-#define SIZE 50
-#define VALID_VALUE "01ECP"
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <fcntl.h>
+# include "mlx/mlx.h"
+# include "gnl/get_next_line.h"
+# include "libft/libft.h"
+# include "libft/ft_printf.h"
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 400
+# define TRUE 1
+# define FALSE 0
+# define MALLOC_ERROR 1
+# define MLX_ERROR 1
+# define COLLECTOR C
+# define WALL '1'
+# define PLAYER P
+# define EXIT E
+# define SIZE 50
+# define VALID_VALUE "01ECP"
 
 typedef struct s_map_data
 {
@@ -97,12 +100,12 @@ int			player_move(int input, t_mlx_data *main_window);
 int			handle_input(int input, t_mlx_data *main_window);
 int			mouse_use(t_mlx_data *main_window);
 void		put_assets(t_mlx_data main_window, const char *texture_name);
-void		init_img(t_mlx_data *main_window);
+int			init_img(t_mlx_data *main_window);
 
 int			init_window(t_mlx_data *main_window);
 void		init_player_pos(t_mlx_data *main_window);
 void		init_player(t_mlx_data *main_window);
-void		create_str_map(t_mlx_data *main_window);
+int			create_str_map(t_mlx_data *main_window);
 
 int			check_rectangle(t_map_data *map, int count, int max_x);
 int			check_wall_map(t_map_data *map, int max_x, int max_y);
@@ -115,3 +118,5 @@ int			check_way_possible(char *str_map, int pos_x, int pos_y, t_pos pos);
 
 void		clean_close(t_mlx_data *main_window);
 void		free_list(t_map_data *head);
+
+#endif
